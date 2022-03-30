@@ -13,6 +13,7 @@ public class Test {
     void test01(){
         User user = userService.getUserById(2);
         System.out.println(user);
+        System.out.println("hhhh");
 
     }
 }
