@@ -15,10 +15,13 @@
             <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
             <result property="userActivated" column="user_activated" jdbcType="TIMESTAMP"/>
     </resultMap>
+<!--        User selectOneByUserEmail(String userEmail);-->
+        <select id="selectOneByUserEmail" resultType="com.hdu.pojo.User">
+                select * from t_user where user_email = #{userEmail}
+        </select>
+<!--    User selectOneByUserName(@Param("userName") String userName);-->
+    <select id="selectOneByUserName" resultType="com.hdu.pojo.User">
+        select * from t_user where user_name = #{userName}
+    </select>
 
-    <sql id="Base_Column_List">
-        user_id,user_name,user_sex,
-        user_password,user_email,user_url,
-        user_created,is_deleted,user_activated
-    </sql>
 </mapper>

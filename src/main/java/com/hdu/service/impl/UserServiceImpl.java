@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hdu.pojo.User;
 import com.hdu.service.UserService;
 import com.hdu.mapper.UserMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,20 +17,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService{
-
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private  UserService userService;
-    public User getUserById(Integer id){
-        User user = userMapper.selectById(id);
-        return user;
+    /**
+     * 根据email查看用户是否存在
+     * */
+    public Boolean isExsitUserByEmail(@Param("userEmail") String userEmail){
+        User user = userMapper.selectOneByUserEmail(userEmail);
+        if (user==null)
+            return Boolean.FALSE;
+        return Boolean.TRUE;
     }
 
-    @Override
-    public Boolean userRegisiterByNameAndEmail(String username, String useremail, String userpassword) {
 
-    }
+
 }
 
 

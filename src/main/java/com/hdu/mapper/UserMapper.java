@@ -2,6 +2,7 @@ package com.hdu.mapper;
 
 import com.hdu.pojo.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,6 +14,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     *
+     * 根据邮箱查找
+     * */
+    User selectOneByUserEmail(@Param("userEmail") String userEmail);
+    /**
+     * 根据用户名查询
+     * */
+    User selectOneByUserName(@Param("userName") String userName);
 }
 
 
